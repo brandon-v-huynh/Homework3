@@ -26,9 +26,14 @@ public class CustomerSurvey {
             swap(arr, i, largest);
             maxHeapify(arr, largest);
         }
-
-        
     }
+
+    public static void buildMaxHeap(WordFreq[] arr) {
+        for (int i = (arr.length / 2) - 1; i >= 0; i--) {
+            maxHeapify(arr, i);
+        }
+    }
+
     public static void main(String[] args) {
         WordFreq[] customerSurvey = new WordFreq[10];
 
@@ -40,11 +45,13 @@ public class CustomerSurvey {
         customerSurvey[5] = new WordFreq("inconvient", 900);
         customerSurvey[6] = new WordFreq("difficult to use", 100);
         customerSurvey[7] = new WordFreq("easy to use", 140);
-        customerSurvey[8] = new WordFreq("would reccomend to friends", 800);
+        customerSurvey[8] = new WordFreq("would recommend to friends", 800);
         customerSurvey[9] = new WordFreq("visit the store", 700);
 
+        buildMaxHeap(customerSurvey);
+
         for (int i = 0; i < customerSurvey.length; i++) {
-            System.out.print(customerSurvey[i].word + " : " + customerSurvey[i].frequency);
+            System.out.println(customerSurvey[i].word + " : " + customerSurvey[i].frequency);
         }
     }
 }
