@@ -1,6 +1,6 @@
 public class CustomerSurvey {
 
-    // helper swap method
+    // helper swap method for two elements in the array
     public static void swap(WordFreq[] arr, int a, int b) {
         WordFreq temp = arr[a];
         arr[a] = arr[b];
@@ -8,27 +8,32 @@ public class CustomerSurvey {
 
     } 
     
-    // 
+    // max-heap property, node value greater than childrens'
     public static void maxHeapify(WordFreq[] arr, int i) {
-        int left = (2 * i) + 1;
-        int right = (2 * i) + 2;
+        int left = (2 * i) + 1;     // left child
+        int right = (2 * i) + 2;    // right child
         int largest = i;
 
+        // check if left child is larger than root
         if (left < arr.length && arr[left].frequency > arr[largest].frequency) {
             largest = left;
         }
 
+        // check if right child is larger than current largest
         if (right < arr.length && arr[right].frequency > arr[largest].frequency) {
             largest = right;
         }
 
+        // swap if largest isn't root, recursively call heapify
         if (largest != i) {
             swap(arr, i, largest);
             maxHeapify(arr, largest);
         }
     }
 
+    // builds max-heap (bottom-up)
     public static void buildMaxHeap(WordFreq[] arr) {
+        // start at last non-leaf node, since leaf nodes are already max heaps
         for (int i = (arr.length / 2) - 1; i >= 0; i--) {
             maxHeapify(arr, i);
         }
